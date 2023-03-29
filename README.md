@@ -15,9 +15,43 @@ Serving the HTML pages.
 Testing the webserver
 
 ## PROGRAM:
+```
+from http.server import HTTPServer, BaseHTTPRequestHandler
+content = """
+<!DOCTYPE html>
+<html>
+<head>
+<title>My webserver</title>
+</head>
+<body>
+<h1><u>Languages used iun Web Development</u><h1>
+<ul>
+<li>HTML</li>
+<li>CSS</li>
+<li>JavaScript</li>
+<li>Bootstrap</li>
+</body>
+</html>
+"""
+class myhandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        print("request received")
+        self.send_response(200)
+        self.send_header('content-type', 'text/html; charset=utf-8')
+        self.end_headers()
+        self.wfile.write(content.encode())
+server_address = ('',80)
+httpd = HTTPServer(server_address,myhandler)
+print("my webserver is running...")
+httpd.serve_forever()
+
+```
 
 
 ## OUTPUT:
+![Screenshot 2023-03-29 215249](https://user-images.githubusercontent.com/121165867/228607263-c7b99f6f-edb7-404a-a673-d50fd3686dd3.png)
+![Screenshot 2023-03-29 215224](https://user-images.githubusercontent.com/121165867/228607323-22309ec8-aea2-44f9-bfb5-ea599ee06c0b.png)
+
 
 
 ## RESULT:
